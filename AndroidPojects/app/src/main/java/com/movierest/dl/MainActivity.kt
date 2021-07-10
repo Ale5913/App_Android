@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 //                        }
                     movies= this
                         moviesRV.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL ,false )
-                        moviesRV.adapter  = MovieAdapter(this)
+                        moviesRV.adapter  = MovieAdapter(this@MainActivity,this)
                     }
                 }
                 moviesRV.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL ,false )
