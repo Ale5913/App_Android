@@ -13,5 +13,5 @@ interface EndPointApi {
     fun show(): Call<MoviesResponse>
 
     @GET(ResourceURL.URL_GET_SHOW_MOVIE)
-    fun show(@Path("idPelicula") idPelicula:Int): Call<Movie>
+    fun descripcion(@Path("idPelicula") idPelicula:Int): Call<Movie>
 }

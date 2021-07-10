@@ -20,9 +20,8 @@ class DetailMovieActivity : AppCompatActivity(){
         }
         Log.i(TAG,"idPelicula: $idPelicula")
         super.onCreate(savedInstanceState)
-        _showMovie()
         setContentView(R.layout.activity_detail_movie)
-
+        _showMovie()
     }
 
 
@@ -30,7 +29,7 @@ class DetailMovieActivity : AppCompatActivity(){
         var restApiAdapter = RestApiAdapter()
         var gson = restApiAdapter.gsonDeserizerMovie()
         val endPointApi = restApiAdapter.conection(gson)
-        val call = endPointApi.show(idPelicula)
+        val call = endPointApi.descripcion(idPelicula)
 
         call.enqueue(object : retrofit2.Callback<Movie>{
             override fun onResponse(call: Call<Movie>, response: Response<Movie>) {

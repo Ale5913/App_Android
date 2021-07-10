@@ -12,7 +12,7 @@
         android:text="TextView" />
 
     <ImageView
-        android:id="@+id/imageTV"
+        android:id="@+id/imageIV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:srcCompat="@tools:sample/avatars" />
