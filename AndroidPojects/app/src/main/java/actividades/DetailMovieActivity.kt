@@ -5,10 +5,16 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.movierest.dl.R
 import com.movierest.dl.model.Movie
+import com.movierest.dl.restapi.ResourceURL
 import com.movierest.dl.restapi.RestApiAdapter
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_movie.*
+import kotlinx.android.synthetic.main.activity_detail_movie.movieTV
+import kotlinx.android.synthetic.main.adapter_movie.*
+import kotlinx.android.synthetic.main.adapter_movie.view.*
 import retrofit2.Call
 import retrofit2.Response
+import kotlinx.android.synthetic.main.adapter_movie.movieIV as movieIV1
 
 class DetailMovieActivity : AppCompatActivity(){
     var idPelicula: Int=0
@@ -37,6 +43,11 @@ class DetailMovieActivity : AppCompatActivity(){
                     if(movie != null){
                         movieTV.text= movie.nombre
                         descriptionTV.text= movie.descripcion
+                        Picasso.get()
+                            .load(ResourceURL.URL_RESOURCE_IMAGE+movie.imagen)
+                            .error(R.mipmap.ic_launcher)
+                            .into(movieIV);
+
                     }
                 }
 

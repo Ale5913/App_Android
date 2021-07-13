@@ -10,14 +10,17 @@
     android:layout_height="200dp"
     card_view:cardCornerRadius="4dp">
 
-        <ImageView
+        <ImageView android:id="@+id/movieIV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/standard_padding"
             android:scaleType="centerCrop"
+            android:transitionName="movieIV"
             android:src="@drawable/lucah"/>
 
         <TextView
             android:id="@+id/movieTV"
+            android:transitionName="movieTV"
             android:layout_gravity="bottom"
             android:text="Lucah"
             android:padding="10dp"
