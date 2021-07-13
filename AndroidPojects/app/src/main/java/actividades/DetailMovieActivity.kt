@@ -35,7 +35,7 @@ class DetailMovieActivity : AppCompatActivity(){
         var restApiAdapter = RestApiAdapter()
         var gson = restApiAdapter.gsonDeserizerMovie()
         val endPointApi = restApiAdapter.conection(gson)
-        val call = endPointApi.descripcion(idPelicula)
+        val call = endPointApi.detailMovie(idPelicula)
 
         call.enqueue(object : retrofit2.Callback<Movie>{
             override fun onResponse(call: Call<Movie>, response: Response<Movie>) {

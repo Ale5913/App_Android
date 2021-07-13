@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.adapter_movie.view.*
 
 
 
-class MovieAdapter(private val activity: Activity,private val movies:ArrayList<Movie>) : RecyclerView.Adapter<MovieAdapter.MyViewHolder>() {
+class MovieAdapter(private val activity: Activity,private val movies:MutableList<Movie>) : RecyclerView.Adapter<MovieAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): MyViewHolder {
         return MyViewHolder(p0,activity)
