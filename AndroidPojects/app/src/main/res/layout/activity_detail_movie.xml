@@ -13,7 +13,7 @@
             android:id="@+id/collapsingToolbarLayout"
             android:layout_height="wrap_content"
             android:transitionName="movieTV"
-            app:contentScrim="@color/purple_500"
+            app:contentScrim="@color/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:title="@string/app_name"
             app:expandedTitleMarginStart="40dp"
@@ -36,7 +36,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/standard_padding"
+        android:layout_margin="@dimen/standard_space"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
         <!--app:behavior_overlapTop="60dp"-->

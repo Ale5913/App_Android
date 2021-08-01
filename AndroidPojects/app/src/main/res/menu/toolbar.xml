@@ -11,4 +11,10 @@
         app:showAsAction="always|collapseActionView"
         android:title="Filter">
     </item>
+<item android:id="@+id/action_login"
+android:icon="@android:drawable/ic_menu_my_calendar"
+app:showAsAction="always|collapseActionView"
+android:title="Login">
+</item>
+
 </menu>

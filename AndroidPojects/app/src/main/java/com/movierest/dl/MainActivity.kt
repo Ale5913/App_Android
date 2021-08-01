@@ -1,6 +1,8 @@
 package com.movierest.dl
 
+import actividades.LoginActivity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -88,79 +90,90 @@ class MainActivity : AppCompatActivity() {
             R.id.action_filter -> {
                 bottomSheetBehavior?.state = BottomSheetBehavior.STATE_EXPANDED
             }
-        }
-
-        return super.onOptionsItemSelected(item)
+            R.id.action_login -> {
+                var intent = Intent(this,LoginActivity::class.java)
+                startActivity(intent)
+            }
     }
 
-    private fun _init(){
-        swipeRefreshLayout.setOnRefreshListener {
-            //offset = offset + PAGE_SIZE
-            offset += PAGE_SIZE
-            _showMovies()
-        }
+    return super.onOptionsItemSelected(item)
+}
+
+private fun _init() {
+    swipeRefreshLayout.setOnRefreshListener {
+        //offset = offset + PAGE_SIZE
+        offset += PAGE_SIZE
+        _showMovies()
     }
+}
 
-    private fun _bottomSheet() {
-        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetLL)
+private fun _bottomSheet() {
+    bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetLL)
 
-        searchButton.setOnClickListener {
-            bottomSheetBehavior?.state = BottomSheetBehavior.STATE_COLLAPSED
-            offset = 0
-            filterSearch = searchET.text.toString()
-            filterYear = yearET.text.toString()
-            _showMovies()
-        }
+    searchButton.setOnClickListener {
+        bottomSheetBehavior?.state = BottomSheetBehavior.STATE_COLLAPSED
+        offset = 0
+        filterSearch = searchET.text.toString()
+        filterYear = yearET.text.toString()
+        _showMovies()
     }
+}
 
-    private fun _showMovies(/*name: String = "", year: String = ""*/) {
+private fun _showMovies(/*name: String = "", year: String = ""*/) {
 
-        swipeRefreshLayout.setEnabled(false)
-        swipeRefreshLayout.setRefreshing(true)
+    swipeRefreshLayout.setEnabled(false)
+    swipeRefreshLayout.setRefreshing(true)
 
-        var restApiAdapter = RestApiAdapter()
-        var gson = restApiAdapter.gsonDeserizerMovies()
-        val endPointsApi = restApiAdapter.conection(gson)
+    var restApiAdapter = RestApiAdapter()
+    var gson = restApiAdapter.gsonDeserizerMovies()
+    val endPointsApi = restApiAdapter.conection(gson)
 
-        val call = if (filterSearch == "")
-            endPointsApi.show(offset)
-        else
-            endPointsApi.search(filterSearch, filterYear, offset)
+    val call = if (filterSearch == "")
+        endPointsApi.show(offset)
+    else
+        endPointsApi.search(filterSearch, filterYear, offset)
 
-        call.enqueue(object : retrofit2.Callback<MoviesResponse> {
+    call.enqueue(object : retrofit2.Callback<MoviesResponse> {
 
-            override fun onResponse(call: Call<MoviesResponse>, response: Response<MoviesResponse>) {
+        override fun onResponse(call: Call<MoviesResponse>, response: Response<MoviesResponse>) {
 
-                var data = response.body()
+            var data = response.body()
 
-                with(data?.movies) {
-                    if (this != null) {
+            with(data?.movies) {
+                if (this != null) {
 
-                        moviesAux = this;
+                    moviesAux = this;
 
-                        if(offset == 0){
-                            // carga inicial
-                            movies = moviesAux
-                            moviesRV.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
-                            moviesRV.adapter = MovieAdapter(this@MainActivity, movies)
-                        }else{
-                            if( moviesAux.size > 0){
-                                movies.addAll(moviesAux)
-                                moviesRV.adapter!!.notifyItemRangeInserted(movies.size - moviesAux.size, movies.size)
-                            }
+                    if (offset == 0) {
+                        // carga inicial
+                        movies = moviesAux
+                        moviesRV.layoutManager = LinearLayoutManager(
+                            this@MainActivity,
+                            LinearLayoutManager.VERTICAL,
+                            false
+                        )
+                        moviesRV.adapter = MovieAdapter(this@MainActivity, movies)
+                    } else {
+                        if (moviesAux.size > 0) {
+                            movies.addAll(moviesAux)
+                            moviesRV.adapter!!.notifyItemRangeInserted(
+                                movies.size - moviesAux.size,
+                                movies.size
+                            )
                         }
                     }
                 }
-
-                swipeRefreshLayout.setEnabled(true)
-                swipeRefreshLayout.setRefreshing(false)
             }
 
-            override fun onFailure(call: Call<MoviesResponse>, t: Throwable) {
-                Log.e(TAG, t.toString())
-                swipeRefreshLayout.setEnabled(true)
-                swipeRefreshLayout.setRefreshing(false)
-            }
-        })
-    }
+            swipeRefreshLayout.setEnabled(true)
+            swipeRefreshLayout.setRefreshing(false)
+        }
+
+        override fun onFailure(call: Call<MoviesResponse>, t: Throwable) {
+            Log.e(TAG, t.toString())
+            swipeRefreshLayout.setEnabled(true)
+            swipeRefreshLayout.setRefreshing(false)
+        }
+    })
+}
 }
