@@ -45,6 +45,18 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                <ImageView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:src="@drawable/ic_star_40dp"/>
+                <ImageView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:src="@drawable/ic_favorite_40dp" android:id="@+id/favoriteIV"/>
+                <ImageView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:src="@drawable/ic_share_40dp" android:id="@+id/shareIV"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="@dimen/double_space">
+                <TextView style="@style/SocialText" android:layout_width="0dp" android:layout_height="wrap_content" android:text="Qualification" android:layout_weight="1" android:id="@+id/qualificationTV"/>
+                <TextView style="@style/SocialText" android:layout_width="0dp" android:layout_height="wrap_content" android:text="Favorito" android:layout_weight="1" android:id="@+id/favoriteTV"/>
+                <TextView style="@style/SocialText" android:layout_width="0dp" android:layout_height="wrap_content" android:text="Compartir" android:layout_weight="1"/>
+            </LinearLayout>
+
             <TextView
                 android:text="TextView"
                 android:id="@+id/movieTV"

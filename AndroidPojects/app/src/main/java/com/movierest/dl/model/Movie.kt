@@ -8,4 +8,9 @@ class Movie {
     var imagen: String =""
     var idGenero: Int=0
     var genero: String=""
+    var favorite : Favorite? = null
+    var average : Float = 0.0F
+    var qualification : Qualification? = null
+    var favorites = ArrayList<Favorite>()
+    var qualifications = ArrayList<Qualification>()
 }

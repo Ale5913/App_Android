@@ -31,6 +31,8 @@ class MovieDeserilizer: JsonDeserializer<Movie> {
             movie.idGenero= jsonObject.get("idPelicula").asInt
             movie.genero= jsonObject.get("genero").asString
 
+
+
         return movie
     }
 }
