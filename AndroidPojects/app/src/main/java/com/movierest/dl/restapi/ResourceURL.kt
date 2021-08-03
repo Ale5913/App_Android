@@ -6,6 +6,7 @@ object ResourceURL {
     const val URL_RESOURCE_IMAGE =URL_BASE+"uploads/peliculas/"
     //usuario
     const val URL_POST_USER_LOGIN = URL_BASE+"api/usuarios/login"
+    const val URL_POST_USER_REGISTER= URL_BASE+"api/usuarios/singUp"
     //peliculas
     const val URL_GET_SHOW_ALL_MOVIES=URL_BASE+"api/Peliculas/show"
     const val URL_GET_SHOW_MOVIE=URL_BASE+"api/Peliculas/show/{idPelicula}"

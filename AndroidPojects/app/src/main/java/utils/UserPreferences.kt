@@ -17,8 +17,7 @@ class UserPreferences {
                 setEmail(context,"")
                 setName(context,"")
             }
-
-            fun getUser(context: Context, user: User){
+            fun getUser( context: Context, user: User){
                 setId(context,user.idusuario)
                 setEmail(context,user.email)
                 setName(context,user.nombre)

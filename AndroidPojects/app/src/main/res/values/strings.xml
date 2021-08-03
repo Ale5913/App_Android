@@ -2,4 +2,9 @@
     <string name="app_name">MovieRest</string>
     <string name="email">Email</string>
     <string name="password">Contrasenia</string>
+    <string name="login">Login</string>
+    <string name="nombre">Nombre</string>
+    <string name="confirm_password">Confirmar contraseña</string>
+    <string name="name">Nombre</string>
+    <string name="register">Registrar</string>
 </resources>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.HtmlCompat
 import com.movierest.dl.MainActivity
 import com.movierest.dl.R
 import com.movierest.dl.model.User
@@ -19,43 +20,51 @@ import retrofit2.Response
 import utils.UserPreferences
 
 
-class LoginActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
     val TAG = "LoginActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login_activity)
+        setContentView(R.layout.register_activity)
 
-        loginButton.setOnClickListener{
-            _login()
+        registerButton.setOnClickListener{
+            _register()
         }
+
     }
-    private fun _login(){
+
+    private fun _register() {
         var restApiAdapter = RestApiAdapter()
         var gson = restApiAdapter.gsonDeserizerUser()
-        val endPointApi = restApiAdapter.conection(gson)
-        val call = endPointApi.login(emailET.text.toString(),
-            passwordET.text.toString()
+        val endPointsApi = restApiAdapter.conection(gson)
+
+        val call = endPointsApi.register(
+            nameET.text.toString(),
+            emailET.text.toString(),
+            passwordET.text.toString(),
+            confirmPasswordET.text.toString()
         )
 
-        call.enqueue(object : retrofit2.Callback<User>{
+        call.enqueue(object : retrofit2.Callback<User> {
+
             override fun onResponse(call: Call<User>, response: Response<User>) {
+
                 var user = response.body()
+
                 user?.let {
                     if (it.idusuario == 0) {
-                        Toast.makeText(
-                            this@LoginActivity,
-                            "Usuario o contraseña incorrecta",
-                            Toast.LENGTH_LONG
-                        ).show()
+
+                        errorTV.text = HtmlCompat.fromHtml(
+                            user.nombre+user.email+user.password,
+                            HtmlCompat.FROM_HTML_MODE_LEGACY
+                        )
 
                     } else {
-                        UserPreferences.UserPreferences.getUser(this@LoginActivity, user)
-                        var intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        var intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                         startActivity(intent)
 
                         Toast.makeText(
-                            this@LoginActivity,
+                            this@RegisterActivity,
                             "Hola ${user.nombre}",
                             Toast.LENGTH_LONG
                         ).show()
@@ -64,9 +73,11 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             }
+
             override fun onFailure(call: Call<User>, t: Throwable) {
-                Log.e(TAG,t.toString())
+                Log.e(TAG, t.toString())
             }
         })
     }
-    }
+
+}
