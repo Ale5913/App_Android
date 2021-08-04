@@ -5,5 +5,4 @@ class User {
     var nombre: String=""
     var email: String=""
     var password: String=""
-
 }

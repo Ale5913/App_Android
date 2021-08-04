@@ -31,8 +31,17 @@ class MovieDeserilizer: JsonDeserializer<Movie> {
             movie.idGenero= jsonObject.get("idPelicula").asInt
             movie.genero= jsonObject.get("genero").asString
 
+           if (jsonObject.get("favorite")!=null)
+                 movie.favorito = FavoriteDeserilizer.myDeserialize(jsonObject.get("favorite").asJsonObject)
+            // movie.favoritos = FavoritesDeserilizer.myDeserialize(jsonObject.get("favorites").asJsonArray).favorites
+                movie.average = QualificationDeserilizer.average(jsonObject.get("average").asJsonObject)
 
+            if (jsonObject.get("qualification") != null && !jsonObject.get("qualification").isJsonNull)
+            movie.calificacion = QualificationDeserilizer.myDeserialize(jsonObject.get("qualification").asJsonObject)
+
+        //movie.calificaciones = QualificationsDeserilizer.myDeserialize(jsonObject.get("qualifications").asJsonArray).qualifications
 
         return movie
+
     }
 }

@@ -52,5 +52,12 @@
             android:background="@color/colorPrimary"
             android:text="@string/login"
             android:textColor="#FFFFFF" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/double_space"
+            android:layout_gravity="center"
+            android:id="@+id/registerTV"
+            android:layout_height="wrap_content"
+            android:text="@string/registrer"/>
     </LinearLayout>
 </LinearLayout>

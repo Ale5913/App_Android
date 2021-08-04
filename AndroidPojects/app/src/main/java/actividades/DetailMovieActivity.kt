@@ -1,5 +1,6 @@
 package actividades
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +29,16 @@ class DetailMovieActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_movie)
         _showMovie()
+        shareIV.setOnClickListener{_share()}
+    }
+    private fun _share(){
+        var intent= Intent()
+        intent.action= Intent.ACTION_SEND
+        intent.putExtra(Intent.EXTRA_SUBJECT, movieTV.text.toString())
+        intent.putExtra(Intent.EXTRA_TEXT, descriptionTV.text.toString())
+
+        intent.type="text/plain"
+        startActivity(Intent.createChooser(intent,"Compartir"))
     }
 
 
@@ -41,8 +52,10 @@ class DetailMovieActivity : AppCompatActivity(){
             override fun onResponse(call: Call<Movie>, response: Response<Movie>) {
                 var movie = response.body()
                     if(movie != null){
+                        collapsingToolbarLayout.title=movie.nombre
                         movieTV.text= movie.nombre
                         descriptionTV.text= movie.descripcion
+                        qualificationTV.text=getString(R.string.qualification)+": ${movie.average}"
                         Picasso.get()
                             .load(ResourceURL.URL_RESOURCE_IMAGE+movie.imagen)
                             .error(R.mipmap.ic_launcher)

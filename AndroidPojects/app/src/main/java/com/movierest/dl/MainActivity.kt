@@ -15,8 +15,14 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.movierest.dl.adapter.MovieAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import com.movierest.dl.model.Movie
+import com.movierest.dl.restapi.ResourceURL
 import com.movierest.dl.restapi.RestApiAdapter
 import com.movierest.dl.restapi.model.MoviesResponse
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_detail_movie.*
+import kotlinx.android.synthetic.main.activity_main.collapsingToolbarLayout
+import kotlinx.android.synthetic.main.activity_main.movieIV
+import kotlinx.android.synthetic.main.activity_main.toolbar
 import kotlinx.android.synthetic.main.bottom_sheet_filter.*
 import retrofit2.Call
 import retrofit2.Response
@@ -42,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         _init()
         _showMovies()
         _bottomSheet()
+        _imagePromotional()
 
         Log.i(TAG, "onCreate")
 
@@ -176,4 +183,27 @@ private fun _showMovies(/*name: String = "", year: String = ""*/) {
         }
     })
 }
+    private fun _imagePromotional(){
+        var restApiAdapter = RestApiAdapter()
+        var gson = restApiAdapter.gsonDeserizerSimple()
+        val endPointApi = restApiAdapter.conection(gson)
+        val call = endPointApi.imagePromotional()
+
+        call.enqueue(object : retrofit2.Callback<String>{
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                var imageName = response.body()
+                if(imageName != null){
+                    Picasso.get()
+                        .load(ResourceURL.URL_RESOURCE_API+imageName)
+                        .error(R.mipmap.ic_launcher)
+                        .into(movieIV);
+
+                }
+            }
+
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                Log.e(TAG,t.toString())
+            }
+        })
+    }
 }

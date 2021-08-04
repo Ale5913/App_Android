@@ -29,11 +29,16 @@ class LoginActivity : AppCompatActivity() {
         loginButton.setOnClickListener{
             _login()
         }
+        registerTV.setOnClickListener {
+            var intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+            startActivity(intent)
+        }
     }
     private fun _login(){
         var restApiAdapter = RestApiAdapter()
         var gson = restApiAdapter.gsonDeserizerUser()
         val endPointApi = restApiAdapter.conection(gson)
+
         val call = endPointApi.login(emailET.text.toString(),
             passwordET.text.toString()
         )
@@ -50,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
                         ).show()
 
                     } else {
-                        UserPreferences.UserPreferences.getUser(this@LoginActivity, user)
+                        UserPreferences.getUser(this@LoginActivity, user)
                         var intent = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(intent)
 

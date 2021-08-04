@@ -52,9 +52,9 @@
             </LinearLayout>
 
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="@dimen/double_space">
-                <TextView style="@style/SocialText" android:layout_width="0dp" android:layout_height="wrap_content" android:text="Qualification" android:layout_weight="1" android:id="@+id/qualificationTV"/>
-                <TextView style="@style/SocialText" android:layout_width="0dp" android:layout_height="wrap_content" android:text="Favorito" android:layout_weight="1" android:id="@+id/favoriteTV"/>
-                <TextView style="@style/SocialText" android:layout_width="0dp" android:layout_height="wrap_content" android:text="Compartir" android:layout_weight="1"/>
+                <TextView style="@style/SocialText" android:layout_width="0dp" android:layout_height="wrap_content" android:text="@string/qualification" android:layout_weight="1" android:id="@+id/qualificationTV"/>
+                <TextView style="@style/SocialText" android:layout_width="0dp" android:layout_height="wrap_content" android:text="@string/favorite" android:layout_weight="1" android:id="@+id/favoriteTV"/>
+                <TextView style="@style/SocialText" android:layout_width="0dp" android:layout_height="wrap_content" android:text="@string/share" android:layout_weight="1"/>
             </LinearLayout>
 
             <TextView

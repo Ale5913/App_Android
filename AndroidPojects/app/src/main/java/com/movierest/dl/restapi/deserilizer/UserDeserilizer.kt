@@ -24,8 +24,8 @@ class UserDeserilizer: JsonDeserializer<User> {
             user.nombre = jsonObject.get("name").asString
             user.idusuario = jsonObject.get("user_id").asInt
 
-            if (jsonObject.get("password") != null)
-                user.password = jsonObject.get("password").asString
+            if (jsonObject.get("password")!=null)
+                user.password= jsonObject.get("password").asString
             return user
 
         }

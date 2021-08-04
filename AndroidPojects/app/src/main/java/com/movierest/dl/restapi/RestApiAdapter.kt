@@ -7,6 +7,7 @@ import com.movierest.dl.model.Movie
 import com.movierest.dl.model.User
 import com.movierest.dl.restapi.deserilizer.MovieDeserilizer
 import com.movierest.dl.restapi.deserilizer.MoviesDeserilizer
+import com.movierest.dl.restapi.deserilizer.SimpleDeserilizer
 import com.movierest.dl.restapi.deserilizer.UserDeserilizer
 import com.movierest.dl.restapi.model.MoviesResponse
 import retrofit2.Retrofit
@@ -39,6 +40,11 @@ class RestApiAdapter {
     fun gsonDeserizerMovie() : Gson{
         val gsonBuilder = GsonBuilder().setLenient()
         gsonBuilder.registerTypeAdapter(Movie::class.java, MovieDeserilizer())
+        return  gsonBuilder.create()
+    }
+    fun gsonDeserizerSimple() : Gson{
+        val gsonBuilder = GsonBuilder().setLenient()
+        gsonBuilder.registerTypeAdapter(String::class.java, SimpleDeserilizer())
         return  gsonBuilder.create()
     }
 }

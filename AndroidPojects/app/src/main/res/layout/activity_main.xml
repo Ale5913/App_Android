@@ -25,7 +25,8 @@
                 android:id="@+id/movieIV"
                 android:transitionName="movieIV"
                 android:src="@mipmap/ic_launcher"
-                android:layout_height="230dp"/>
+                android:layout_height="230dp"
+                android:tint="#99000000" />
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_height="?attr/actionBarSize"

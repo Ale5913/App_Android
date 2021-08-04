@@ -4,31 +4,35 @@ import android.content.Context
 import com.movierest.dl.model.User
 
 class UserPreferences {
-    class UserPreferences {
         companion object {
 
             val user = "user"
-            val userEmail = "user_email"
-            val userName = "user_name"
-            val userId = "user_id"
+            val email = "user_email"
+            val nombre = "user_name"
+            val Id = "user_id"
 
             fun closeSession(context: Context){
                 setId(context,0)
                 setEmail(context,"")
                 setName(context,"")
             }
-            fun getUser( context: Context, user: User){
+            fun getUser(context: Context,user: User){
+                setId(context,user.idusuario)
+                setEmail(context,user.email)
+                setName(context,user.nombre)
+            }
+
+            fun setUser(context: Context,user: User){
                 setId(context,user.idusuario)
                 setEmail(context,user.email)
                 setName(context,user.nombre)
             }
 
             fun getEmail(context: Context): String?{
-                var preferences = context.
-                getSharedPreferences(user,
+                var preferences = context.getSharedPreferences(user,
                     Context.MODE_PRIVATE)
 
-                return preferences.getString(userEmail,"")
+                return preferences.getString(email,"")
             }
 
             fun setEmail(context: Context, email: String){
@@ -37,7 +41,7 @@ class UserPreferences {
                     Context.MODE_PRIVATE)
 
                 val editor = preferences.edit()
-                editor.putString(userEmail,email)
+                editor.putString(email,email)
                 editor.commit()
 
             }
@@ -47,7 +51,7 @@ class UserPreferences {
                 getSharedPreferences(user,
                     Context.MODE_PRIVATE)
 
-                return preferences.getString(userName,"")
+                return preferences.getString(nombre,"")
             }
 
             fun setName(context: Context, name: String){
@@ -56,7 +60,7 @@ class UserPreferences {
                     Context.MODE_PRIVATE)
 
                 val editor = preferences.edit()
-                editor.putString(userName,name)
+                editor.putString(nombre,name)
                 editor.commit()
 
             }
@@ -66,7 +70,7 @@ class UserPreferences {
                 getSharedPreferences(user,
                     Context.MODE_PRIVATE)
 
-                return preferences.getInt(userId,0)
+                return preferences.getInt(Id,0)
             }
 
             fun setId(context: Context, id: Int){
@@ -75,11 +79,10 @@ class UserPreferences {
                     Context.MODE_PRIVATE)
 
                 val editor = preferences.edit()
-                editor.putInt(userId,id)
+                editor.putInt(Id,id)
                 editor.commit()
 
             }
 
         }
-    }
 }

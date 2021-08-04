@@ -20,10 +20,10 @@ interface EndPointApi {
     @FormUrlEncoded
     @POST(ResourceURL.URL_POST_USER_REGISTER)
     fun register(
-    @Field("name") name: String,
+    @Field("nombre") nombre: String,
     @Field("email") email: String,
     @Field("password") password: String,
-    @Field("confirm_password") confirm_password: String
+    @Field("confirmar_password") confirmar_password: String
     ): Call<User>
 
     //Peliculas
@@ -39,4 +39,10 @@ interface EndPointApi {
 
     @GET(ResourceURL.URL_GET_SHOW_MOVIE)
     fun detailMovie(@Path("idPelicula") idPelicula: Int): Call<Movie>
+
+    //Api
+    @GET(ResourceURL.URL_GET_IMAGE_PROMOTIONAL)
+    fun imagePromotional(): Call<String>
+
+
 }
