@@ -1,6 +1,6 @@
 package com.movierest.dl
 
-import actividades.LoginActivity
+import actividades.user.LoginActivity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -98,9 +98,15 @@ class MainActivity : AppCompatActivity() {
                 bottomSheetBehavior?.state = BottomSheetBehavior.STATE_EXPANDED
             }
             R.id.action_login -> {
-                var intent = Intent(this,LoginActivity::class.java)
+                var intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             }
+            //var intent = if (UserPreferences.getId(this) > 0) {
+            //Intent(this, UserActivity::class.java)
+            //} else
+            //Intent(this, LoginActivity::class.java)
+
+             //       startActivity(intent)
     }
 
     return super.onOptionsItemSelected(item)

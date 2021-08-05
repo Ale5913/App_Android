@@ -6,7 +6,7 @@ import com.movierest.dl.model.User
 class UserPreferences {
         companion object {
 
-            val user = "user"
+            val user = "actividades/user"
             val email = "user_email"
             val nombre = "user_name"
             val Id = "user_id"

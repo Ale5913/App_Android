@@ -5,7 +5,6 @@ object ResourceURL {
     //recursos
     const val URL_RESOURCE_IMAGE =URL_BASE+"uploads/peliculas/"
     const val URL_RESOURCE_API =URL_BASE+"uploads/api/"
-
     //api
     const val URL_GET_IMAGE_PROMOTIONAL =URL_BASE+"api/Peliculas/IMAGEN_PROMOCIONAL"
     //usuario
@@ -14,4 +13,6 @@ object ResourceURL {
     //peliculas
     const val URL_GET_SHOW_ALL_MOVIES=URL_BASE+"api/Peliculas/show"
     const val URL_GET_SHOW_MOVIE=URL_BASE+"api/Peliculas/show/{idPelicula}"
+    const val URL_POST_FAVORITE=URL_BASE+"api/Peliculas/favorito"
+    const val URL_POST_QUALIFICATION=URL_BASE+"api/Peliculas/calificacion"
 }

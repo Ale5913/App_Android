@@ -38,8 +38,24 @@ interface EndPointApi {
     ): Call<MoviesResponse>
 
     @GET(ResourceURL.URL_GET_SHOW_MOVIE)
-    fun detailMovie(@Path("idPelicula") idPelicula: Int): Call<Movie>
+    fun detailMovie(@Path("idPelicula") idPelicula: Int,
+    @Query("idusuario") idusuario: Int?,): Call<Movie>
 
+    @FormUrlEncoded
+    @POST(ResourceURL.URL_POST_FAVORITE)
+    fun favorite(
+        @Field("idusuario") idusuario: Int,
+        @Field("idPelicula") idPelicula: Int,
+        @Field("favorito") favorito: Int,
+    ): Call<String>
+
+    @FormUrlEncoded
+    @POST(ResourceURL.URL_POST_QUALIFICATION)
+    fun qualification(
+        @Field("idusuario") idusuario: Int,
+        @Field("idPelilcua") idPelicula: Int,
+        @Field("qualification") qualification: Float,
+    ): Call<String>
     //Api
     @GET(ResourceURL.URL_GET_IMAGE_PROMOTIONAL)
     fun imagePromotional(): Call<String>
