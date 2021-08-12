@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MovieRest</string>
+    <string name="email">Email</string>
+    <string name="password">Contraseña</string>
+    <string name="qualification">Calificación</string>
+    <string name="login">Login</string>
+    <string name="name">Nombre</string>
+    <string name="confirm_password">Confirmar contraseña</string>
+    <string name="register">Registrarse</string>
+    <string name="my_calification">Promedio</string>
+    <string name="other_califications">Otras calificaciones</string>
+</resources>
