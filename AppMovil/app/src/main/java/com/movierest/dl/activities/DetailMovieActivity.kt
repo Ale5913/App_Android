@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
+import android.widget.MediaController
 import android.widget.RatingBar
 import com.movierest.dl.R
 import com.movierest.dl.adapter.UserCalificationAdapter
@@ -104,8 +105,8 @@ class DetailMovieActivity : AppCompatActivity() {
 
                 if (movie != null) {
 
-                    collapsingToolbarLayout.title = movie.name
-                    movieTV.text = movie.name
+
+                    nombreTV.text = movie.name
                     descriptionTV.text = movie.description
                     qualificationTV.text = getString(R.string.qualification) + ": ${movie.average}"
 
@@ -115,11 +116,19 @@ class DetailMovieActivity : AppCompatActivity() {
                     }
 
                     init(movie.qualifications)
+                    movieIV.setVideoPath(ResoucesURL.URL_RESOURCE_IMAGE + movie.video)
 
-                    Picasso.get()
-                        .load(ResoucesURL.URL_RESOURCE_IMAGE + movie.image)
-                        .error(R.mipmap.ic_launcher)
-                        .into(movieIV);
+                  val  mediaController=MediaController(this@DetailMovieActivity)
+                    movieIV.setMediaController(mediaController)
+                    mediaController.setAnchorView(movieIV)
+                    movieIV.start()
+
+
+                    // Picasso.get()
+                    //     .load("https://images.unsplash.com/photo-1628779238951-be2c9f2a59f4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80")
+                    //    .error(R.mipmap.ic_launcher)
+                    //    .into(movieIV);
+
                 }
             }
 

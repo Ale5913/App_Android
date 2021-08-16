@@ -26,6 +26,7 @@ class MovieDeserilizer : JsonDeserializer<Movie> {
         movie.year = jsonObject.get("year").asInt
         movie.description = jsonObject.get("description").asString
         movie.image = jsonObject.get("image").asString
+        movie.video = jsonObject.get("video").asString
         movie.type_movie_id = jsonObject.get("type_movie_id").asInt
         movie.type_movie = jsonObject.get("type_movie").asString
 

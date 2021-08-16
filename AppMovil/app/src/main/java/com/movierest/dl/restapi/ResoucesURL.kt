@@ -1,7 +1,7 @@
 package com.movierest.dl.restapi
 
 object ResoucesURL {
-    const val URL_BASE = "http://192.168.100.1/movie_rest/"
+    const val URL_BASE = "https://youupp.000webhostapp.com/"
 
     // *** recursos
     const val URL_RESOURCE_IMAGE = URL_BASE+"uploads/movies/"

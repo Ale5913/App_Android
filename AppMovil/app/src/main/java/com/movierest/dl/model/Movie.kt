@@ -6,6 +6,7 @@ class Movie {
     var year: Int = 0
     var description: String = ""
     var image: String = ""
+    var video: String = ""
     var type_movie_id: Int = 0
     var type_movie: String = ""
     var favorite : Favorite? = null
